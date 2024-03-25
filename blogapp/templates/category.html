@@ -2,7 +2,7 @@
 
 {% block content %}
 	<h2>{{ category.name }}</h2>
-    <div style="display: flex;">
+    <div style="display: flex; width: fit-content" class="border border-black">
     {% for post in posts %}
         <div class="card" style="width: 18rem;">
               <img src="..." class="card-img-top" alt="post image">
@@ -10,8 +10,29 @@
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.text }}</p>
                 <a href="#" class="btn btn-primary">Переглянути</a>
+                <a href="{% url 'delete_post' post_id=post.id %}" class="btn btn-danger">Видалити</a>
               </div>
         </div>
     {% endfor %}
     </div>
+    <hr class="border border-black">
+
+    <form method="post" class="border border-black">
+    {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Додати пост</label>
+          <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Введіть заголовок поста..." required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Текст</label>
+          <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введіть текст поста"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Зображення для поста</label>
+          <input name="image" class="form-control" type="file" id="formFile">
+        </div>
+        <div>
+            <input type="submit"  class="btn btn-primary" value="Створити пост">
+        </div>
+    </form>
 {% endblock %}
