@@ -66,10 +66,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blogapp.context_processors.default'
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'new_blog.wsgi.application'
 
