@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import Category, Post, BlogUser
 
@@ -38,3 +38,14 @@ def delete_post(request, post_id):
 def view_post(request, post_id):
     current_post = Post.objects.get(id=post_id)
     return  render(request, "post.html", context={"post": current_post})
+
+def search_results(request):
+    if not request.method == "POST":
+        response = HttpResponse()
+        response.reason_phrase = "Method not allowed"
+        response.status_code = 405
+        return response
+    else:
+        search_term = request.POST.get("search_term")
+        posts_list = Post.objects.filter(title__icontains=search_term)
+        return render(request, "search_results.html", context={"posts": posts_list})

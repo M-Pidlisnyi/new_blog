@@ -1,0 +1,17 @@
+{%  extends "index.html" %}
+
+{% block content %}
+	<div style="width: fit-content" class="border border-black">
+    {% for post in posts %}
+        <div class="card" style="width: 25rem; margin-bottom: 15px">
+              <img src="/{{ post.image }}" class="card-img-top" alt="{{ post.id }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.text }}</p>
+                <a href="{% url 'view_post' post_id=post.id %}" class="btn btn-primary">Переглянути</a>
+                <a href="{% url 'delete_post' post_id=post.id %}" class="btn btn-danger">Видалити</a>
+              </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
