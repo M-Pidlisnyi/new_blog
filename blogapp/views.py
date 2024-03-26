@@ -17,11 +17,13 @@ def category(request, category_id):
     posts_list = Post.objects.filter(category=category_id)
 
     if request.method == "POST":
+        print(request.FILES)
         new_title = request.POST.get("title")
         new_text = request.POST.get("text", "")
-        new_image = request.POST.get("image", "")
+        new_image = request.FILES.get("image", None)
+        print(new_image)
         blog_user = BlogUser.objects.get(user=request.user)
-        Post.objects.create(title=new_title, text=new_text, category=current_category, user=blog_user, image=f"pics/{new_image}")
+        Post.objects.create(title=new_title, text=new_text, category=current_category, user=blog_user, image=new_image)
         return  HttpResponseRedirect(reverse("category", args=(current_category.id,)))
 
 
