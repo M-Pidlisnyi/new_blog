@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+    <main>
+        <h4>{{ post.category.name }}</h4>
+        <h2>
+            {{ post.title }}
+        </h2>
+        <div>
+            <img src="/{{ post.image }}" alt="post image">
+        </div>
+        <p>
+            {{ post.text }}
+        </p>
+        <p>
+            <span>-{{ post.user.user.first_name }} {{ post.user.user.last_name }}</span>  <span>on {{ post.datetime }}</span>
+        </p>
+    </main>
+{% endblock %}

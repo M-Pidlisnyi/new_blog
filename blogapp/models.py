@@ -26,7 +26,7 @@ def upload_image_path(instance, filename):
 class Post(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
     text = models.TextField()
-    datetime = models.DateField(null=False, blank=False, default=timezone.now)
+    datetime = models.DateTimeField(null=False, blank=False, default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     user = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="pics/", null=True, blank=True)

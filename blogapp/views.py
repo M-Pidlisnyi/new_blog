@@ -33,3 +33,8 @@ def delete_post(request, post_id):
     deleted_post = Post.objects.get(id=post_id)
     deleted_post.delete()
     return HttpResponseRedirect(reverse("category", args=(deleted_post.category_id,)))
+
+
+def view_post(request, post_id):
+    current_post = Post.objects.get(id=post_id)
+    return  render(request, "post.html", context={"post": current_post})
