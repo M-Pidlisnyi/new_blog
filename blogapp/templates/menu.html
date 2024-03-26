@@ -27,8 +27,8 @@
               </ul>
               <form method="post" action="{% url 'search_results' %}" class="d-flex" role="search">
                   {% csrf_token %}
-                <input name="search_term" class="form-control me-2" type="search" placeholder="implementing..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input name="search_term" class="form-control me-2" type="search" placeholder="Введіть запит..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Шукати</button>
               </form>
             </div>
           </div>
