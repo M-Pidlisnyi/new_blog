@@ -5,7 +5,7 @@
     <div style="display: flex; width: fit-content" class="border border-black">
     {% for post in posts %}
         <div class="card" style="width: 18rem;">
-              <img src="/{{ post.image }}" class="card-img-top" alt="post image">
+              <img src="/{{ post.image }}" class="card-img-top" alt="{{ post.id }}">
               <div class="card-body">
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.text }}</p>
@@ -17,7 +17,7 @@
     </div>
     <hr class="border border-black">
 
-    <form method="post" class="border border-black">
+    <form method="post" class="border border-black" enctype="multipart/form-data">
     {% csrf_token %}
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Додати пост</label>
