@@ -2,5 +2,18 @@
 
 {% block content %}
 <h1> Цікавинки про мене </h1>
-<img src="/{{ blog_user.profile_pic }}">
+    {% if blog_user.profile_pic %}
+        <img src="/{{ blog_user.profile_pic }}" alt="no photo">
+    {% endif %}
+    <p>
+        Change Profile Picture
+    </p>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="formFileSm" class="form-label">Виберіть файл для фото профілю </label>
+            <input name="profile_pic" class="form-control form-control-sm" id="formFileSm" type="file" required>
+            <button type="submit" class="btn btn-success mb-3">Завантажити</button>
+        </div>
+    </form>
 {% endblock %}

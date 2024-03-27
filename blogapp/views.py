@@ -8,7 +8,16 @@ def index(request):
     return render(request, "index.html")
 
 def about(request):
-    blog_user = BlogUser.objects.get(user=request.user)
+    blog_user = BlogUser.objects.get_or_create(user=request.user)[0]
+
+
+    if request.method == "POST":
+        print(request.FILES)
+        profile_pic = request.FILES.get('profile_pic', None)
+        print(profile_pic)
+        blog_user.profile_pic = profile_pic
+        blog_user.save()
+        return  HttpResponseRedirect(reverse('about'))
     return render(request, "about.html", context={"blog_user": blog_user})
 
 
@@ -48,4 +57,5 @@ def search_results(request):
     else:
         search_term = request.POST.get("search_term")
         posts_list = Post.objects.filter(title__icontains=search_term)
+        #TODO add Postgresql DB using docker to make icontains work
         return render(request, "search_results.html", context={"posts": posts_list})
