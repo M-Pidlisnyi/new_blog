@@ -1,0 +1,15 @@
+
+services:
+  django:
+      image: django
+      volumes:
+        - .:/new_blog
+      ports:
+        - "8000:8000"
+      depends_on:
+        - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: 231100
